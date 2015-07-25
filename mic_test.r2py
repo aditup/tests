@@ -1,0 +1,10 @@
+sensorlib = dy_import_module("sensorlib.r2py")
+port = sensorlib.get_connectionport()
+sensor_socket = sensorlib.getconnection(port)
+
+sensorlib.request_data(sensor_socket, 'recorderStartMicrophone', ['/sdcard/recording.mp4'])
+sleep(15)
+sensorlib.request_data(sensor_socket, 'recorderStop', [])
+log("done!\n")
+
+sensor_socket.close()
